@@ -23,4 +23,5 @@ x = zeros(n, 1);
 x(n-1) = x0(1);
 x(n) = x0(2);
 
-A * x
+% Printing the solution:
+x
