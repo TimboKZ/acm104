@@ -1,0 +1,307 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newcommand{\R}{\mathbb{R}}	
+
+\begin{document}
+
+
+\title{ACM104 Problem Set \#2 Solutions}
+
+\author{Timur Kuzhagaliyev}
+
+%\date{15th October, 2017}
+ 
+\maketitle 
+
+\section*{Problem 1}
+
+\paragraph{a)} In this case, $W$ is not a subspace of $V$. Consider 2 matrices:
+\[
+   A=
+  \left[ {\begin{array}{cc}
+   1 & 1 \\
+   0 & 0 \\
+  \end{array} } \right]
+  \qquad 
+   B=
+  \left[ {\begin{array}{cc}
+   0 & 0 \\
+   1 & 2 \\
+  \end{array} } \right]
+\]
+
+Note that $A, B \in V$ since $\textrm{det}A=1*0-1*0=0$ and $\textrm{det}B=0*2-1*0=0$. Consider the sum:
+
+\[
+   A+B=
+  \left[ {\begin{array}{cc}
+   1 & 1 \\
+   1 & 2 \\
+  \end{array} } \right]
+\]
+
+$\textrm{det}(A+B)=1*2-1*1=1\neq0$ hence $A+B\notin W$, violating the subspace property.
+
+\paragraph{b)} $W$ is a subspace of $V$ as its closed under matrix addition and multiplication by a scalar. Zero vector is the zero matrix, as $\textrm{tr}\,0 = \sum_{i=1}^{n} 0 = 0$. Proof:
+\begin{align*}
+	A,B \in W&
+	\quad
+	\textrm{tr} (A+B)=\textrm{tr} A+\textrm{tr} B=0+0=0  
+	\quad \Rightarrow \quad
+	A+B \in W
+	\\
+	A \in W \ \alpha \in \R &
+	\quad
+	\textrm{tr} (\alpha \cdot A)= \sum_{i=1}^{n} \alpha \cdot a_{ii}
+	= \alpha \sum_{i=1}^{n} \cdot a_{ii} = \alpha \cdot 0 = 0
+	\quad \Rightarrow \quad
+	\alpha \cdot A \in W
+	\\
+	A,B \in W \ \alpha, \beta \in \R &
+	\\
+	\textrm{tr} (\alpha A + \beta B)&= \sum_{i=1}^{n} \alpha \cdot a_{ii} + \sum_{i=1}^{n} \beta \cdot b_{ii}
+	= \alpha \sum_{i=1}^{n} \cdot a_{ii} + \beta \sum_{i=1}^{n} \cdot b_{ii}
+	= \alpha \cdot 0 + \beta \cdot 0
+	= 0
+	\quad \Rightarrow \quad
+	\alpha A + \beta B \in W
+\end{align*}
+
+\paragraph{c)} W is not a subspace. Let $g(x) = 2-1.5x$, then $g(x) \in W$ since $g(0)g(1) = 2 * 0.5 = 1$. Now $h(x) = \alpha g(x)$ with some $\alpha \in \R,\ \alpha \neq 1$. Observe that $h(0)h(1) = \alpha g(0) \alpha g(1) = \alpha^2 \cdot 1 = \alpha^2 \neq 1$. Therefore $h(x) \notin W$, violating subspace property.
+
+\pagebreak
+
+\paragraph{d)} W is a subspace of V since it's closed under addition and scalar multiplication. Zero vector is $f(x) = 0$, clearly $f(\frac{1}{2}) = 0$ and  $\int_{0}^{1} f(t)\ dt = \int_{0}^{1} 0\ dt = 0$. Proof:
+
+\begin{align*}
+f(x), g(x) \in W& \quad
+\int_{0}^{1} (f(t) + g(t)) dt
+= \int_{0}^{1} f(t) dt + \int_{0}^{1} g(t) dt
+= f(0.5) + g(0.5)
+\quad \Rightarrow \quad
+f(x) + g(x) \in W
+\\\\
+f(x)\in W \ \alpha \in \R& \quad
+\int_{0}^{1} \alpha \cdot f(t) dt
+= \alpha \int_{0}^{1} f(t) dt
+= \alpha \cdot f(0.5)
+\quad \Rightarrow \quad
+\alpha \cdot f(x) \in W
+\\\\
+f(x),g(x)\in W \ \alpha, \beta \in \R&
+\\
+\int_{0}^{1} (\alpha \cdot f(t) + \beta \cdot g(t)) dt
+&= \int_{0}^{1} \alpha \cdot f(t) dt + \int_{0}^{1} \beta \cdot g(t) dt
+\\
+&= \alpha \int_{0}^{1} f(t) dt + \beta \int_{0}^{1} g(t) dt
+\\
+&= \alpha \cdot f(0.5) + \beta \cdot g(0.5)
+\quad \Rightarrow \quad
+\alpha \cdot f(t) + \beta \cdot g(t) \in W
+\end{align*}
+
+\paragraph{e)} W is a subspace of V since it's closed under addition and scalar multiplication. Zero vector is $v(x,y) = \left[ 0 \ 0 \right]^T$, which clearly belongs to $W$ as derivative of $0$ is also $0$. Proof:
+
+\begin{gather*}
+v(x,y), u(x,y) \in W \quad
+v(x,y) + u(x,y) =
+\left[ {\begin{array}{c}
+ v_1(x,y) + u_1(x,y) \\
+ v_2(x,y) + u_2(x,y) \\
+\end{array} } \right]
+\\ \Downarrow \\
+\nabla \cdot (v + u)
+= \frac{\delta (v_1 + u_1)}{\delta x} + \frac{\delta (v_2 + u_2)}{\delta y}
+= \frac{\delta v_1}{\delta x} + \frac{u_1}{\delta x} + \frac{\delta v_2}{\delta y} + \frac{\delta u_2}{\delta y}
+= (\frac{\delta v_1}{\delta x} + \frac{\delta v_2}{\delta y}) + (\frac{u_1}{\delta x} + \frac{\delta u_2}{\delta y})
+= 0 + 0 = 0
+\\ \Downarrow \\
+v+u \in W
+\end{gather*}
+
+\begin{gather*}
+v(x,y) \in W \; \alpha \in \R \quad
+\alpha \cdot v(x,y) =
+\left[ {\begin{array}{c}
+ \alpha \cdot v_1(x,y) \\
+ \alpha \cdot v_2(x,y) \\
+\end{array} } \right]
+\\ \Downarrow \\
+\nabla \cdot (\alpha \cdot u)
+= \frac{\delta (\alpha \cdot v_1)}{\delta x} + \frac{\delta (\alpha \cdot v_2)}{\delta y}
+= \frac{\alpha \cdot \delta (v_1)}{\delta x} + \frac{\alpha \cdot \delta (v_2)}{\delta y}
+= \alpha \cdot (\frac{\delta (v_1)}{\delta x} + \frac{\delta (v_2)}{\delta y})
+= \alpha \cdot 0 = 0
+\\ \Downarrow \\
+\alpha \cdot v \in W
+\end{gather*}
+
+\section*{Problem 2}
+
+\paragraph{a)} $p_1, p_2, p_3$ can be combined into a matrix $\left[p_1\ p_2\ p_3\right]$. We can find the row-echelon form of this matrix:
+
+\[
+\left[ {\begin{array}{ccc}
+ 1 & 0 & 1 \\
+ 0 & -1 & 2 \\
+ -3 & 2 & 1 \\
+\end{array} } \right]
+\xrightarrow{r_{3}+3r_1}
+\left[ {\begin{array}{ccc}
+ 1 & 0 & 1 \\
+ 0 & -1 & 2 \\
+ 0 & 2 & 4 \\
+\end{array} } \right]
+\xrightarrow{r_{3}+2r_2}
+\left[ {\begin{array}{ccc}
+ 1 & 0 & 1 \\
+ 0 & -1 & 2 \\
+ 0 & 0 & 8 \\
+\end{array} } \right]
+\]
+
+The rank of the matrix is equal to the number of columns (vectors used to compose it), hence $p_1, p_2, p_3$ are linearly independent.
+
+\paragraph{b)} The dimension of $\mathcal{P}^{(2)}$ is 3 since it depends on 3 variables (coefficients). Since we have exactly 3 vectors $p_1, p_2, p_3$ and they are all linearly independent, they should span the entire $\mathcal{P}^{(2)}$.
+
+\paragraph{c)} By a) and b), $p_1, p_2, p_3$ are linearly independent and $span(p_1, p_2, p_3) = \mathcal{P}^{(2)}$, hence they form a basis of $\mathcal{P}^{(2)}$ by definition. The coordinates of $q(x) = 1$ in basis $p_1, p_2, p_3$ are $(-\frac{1}{8}, \frac{1}{4}, \frac{1}{8})$. 
+
+\pagebreak
+
+\section*{Problem 3}
+
+\paragraph{a)} Note that for any $f$, $x_1$ and $x_2$ are always free. Hence we only need to prove that $x_n = x_{n-1} + x_{n-2}$ holds for addition and multiplication by scalar. Clearly, $\mathcal{F}$ is a vector space under given operations:
+
+\[
+f_1, f_2 \in \mathcal{F} \qquad f_1 + f_2 = (x_1 + y_1, x_2 + y_2, ...) = (z_1, z_2, ...)
+\]
+\begin{align*}
+z_n &= z_{n-1} + z_{n-2} \\
+&= (x_{n-1} + y_{n-1}) + (x_{n-2} + y_{n-2}) \\
+&= (x_{n-1} + x_{n-2}) + (y_{n-1} + y_{n-2}) \\
+&= x_{n} + y_{n} \quad \Rightarrow \quad f_1+f_2 \in \mathcal{F}
+\end{align*}
+
+\[
+f \in \mathcal{F}, \ \alpha \in \R \qquad \alpha \cdot f = (\alpha \cdot x_1, \alpha \cdot x_2, ...) = (z_1, z_2, ...)
+\]
+\begin{align*}
+z_n &= z_{n-1} + z_{n-2} \\
+&= \alpha \cdot x_{n-1} + \alpha \cdot x_{n-2} \\
+&= \alpha \cdot ( x_{n-1} + x_{n-2} ) \\
+&= \alpha \cdot x_{n} \quad \Rightarrow \quad \alpha \cdot f \in \mathcal{F}
+\end{align*}
+
+\[
+f_1, f_2 \in \mathcal{F}, \ \alpha, \beta \in \R \qquad \alpha \cdot f_1 + \beta \cdot f_2 = (\alpha \cdot x_1 + \beta \cdot y_1, \alpha \cdot x_2 + \alpha \cdot y_2, ...) = (z_1, z_2, ...)
+\]
+\begin{align*}
+z_n &= z_{n-1} + z_{n-2} \\
+&= (\alpha \cdot x_{n-1} + \beta \cdot y_{n-1}) + (\alpha \cdot x_{n-2} + \beta \cdot y_{n-2}) \\
+&= (\alpha \cdot x_{n-1} + \alpha \cdot x_{n-2}) + (\beta \cdot y_{n-1} + \beta \cdot y_{n-2}) \\
+&= \alpha \cdot (x_{n-1} + x_{n-2}) + \beta \cdot (y_{n-1} + y_{n-2}) \\
+&= \alpha \cdot x_{n} + \beta \cdot y_{n} \quad \Rightarrow \quad \alpha \cdot f_1 + \beta \cdot f_2 \in \mathcal{F}
+\end{align*}
+
+\paragraph{b)} As mentioned above, each $f \in \mathcal{F}$ has 2 free parameters on which all other parameters depend: $x_1$ and $x_2$. Hence $\mathcal{F}$ has two degrees of freedom and its dimension is 2. Two vectors that can form a basis of $\mathcal{F}$ are $f_1 = (1, 0, 1, 1, 2, ...)$ and $f_2 = (0, 1, 1, 2, 3, ...)$.
+
+\paragraph{c)} The coordinates of the original $f^*$ in the basis $f_1, f_2$ defined above are $(1, 1)$.
+
+\pagebreak
+
+\section*{Problem 4}
+
+Denote columns of $A$ as $\left[c_1\ c_2\ \ldots\ c_n\right]$. Note that the difference between any two adjacent columns is the vector $(\{1\}^n)^T$. Hence any column $c_i$ in A can be expressed as :
+
+\[
+c_i = c_1 + k \cdot 
+\left[ {\begin{array}{c}
+ 1 \\
+ 1 \\
+ \vdots \\
+ 1 \\
+\end{array} } \right]
+\quad \textrm{where} \quad k=0,\ldots ,n-1
+\]
+
+Note that $c_2 - c_1 = (\{1\}^n)^T$, so the same equation can be rewritten as $c_i = c_1 + k \cdot (c_2 - c_1) = (1 - k) \cdot c_1 + k \cdot c_2$. Clearly, $c_1$ and $c_2$ are linearly independent and $\textrm{span}(c_1, c_2) = \textrm{span}(c_1, c_2, \ldots, c_n)$. By definition, $\textrm{im}A = \textrm{span}(c_1, c_2)$ hence $c_1, c_2$ form a basis of the image of $A$. Note that $c_1$ and $c_2$ have no particular significance and any other 2 columns can be chosen.
+
+Similar argument applies for the basis of the coimage of $A$. Consider columns of $A^T$, which are essentially transposed rows of $A$: $\left[r_1^T\ r_2^T\ \ldots\ r_n^T\right]$. This time, the difference between each column is $(\{n\}^n)^T$ and they can be expressed as $r_i^T = (1 - k) \cdot r_1^T + k \cdot r_2^T$. Following a similar argument, $r_1^T, r_2^T$ span the entire column space of $A^T$ and since they are linearly independent, $r_1^T, r_2^T$ form a basis of the coimage of $A$.
+
+To compute a basis for the kernel of $A$, we can start by finding its row-echelon form. One can begin by starting at the bottom row and subtracting the row above from the current row. When repeated $n-1$ times going up the matrix, this process will leave us with a matrix that has the same $r_1$ as $A$ but has $n$ everywhere else. Clearly, we can obtain zeroes on all rows below row 2 by subtracting row 2 from them. Finally, we can subtract row 1 fom row 2 $n$ times to end up with the following matrix in row-echelon form:
+
+\[
+\left[ {\begin{array}{ccccc}
+ 1 & 2 & 3 & \ldots & n \\
+ 0 & -n & -2n & \ldots & n-n^2 \\
+ 0 & 0 & 0 &\ldots & 0 \\
+ \vdots & \vdots & \vdots &  & \vdots \\
+ 0 & 0 & 0 & \ldots & 0 \\
+\end{array} } \right]
+\]
+
+To obtain the reduced row-echelon form, divide row 2 by $-n$ and subtract row 2 from row 1 twice:
+
+
+\[
+\left[ {\begin{array}{ccccc}
+ 1 & 0 & -1 & \ldots & 2 - n \\
+ 0 & 1 & 2 & \ldots & n - 1 \\
+ 0 & 0 & 0 &\ldots & 0 \\
+ \vdots & \vdots & \vdots &  & \vdots \\
+ 0 & 0 & 0 &\ldots & 0 \\
+\end{array} } \right]
+\]
+
+We have two basic variables (pivots) and $n-2$ free variables which we can use to express the basic variables. Denote basic variables as $x_1, x_2$ and free variables as $x_3, \ldots, x_n$. then we can express a general solution for $Ax = 0$ as:
+
+\[
+x =
+\left[ {\begin{array}{c}
+  \sum_{i=3}^{n}(2 - i) * x_i \\
+  \sum_{i=3}^{n}(i - 1) * x_i \\
+  x_3 \\
+  \vdots \\
+  x_n \\
+\end{array} } \right]
+\quad \textrm{where} \quad x_3, \ldots, x_n \in \R
+\]
+
+Generate $n-2$ vectors (indexed $k = 3, \ldots, n$) using the general solution above such that for each vector $x_k = 1$ and all other free variables are $0$. These vectors will be linearly independent and they will span the whole kernel of $A$, hence forming a basis of kernel of $A$.
+
+Similar argument applies to the basis of the cokernel of A. Repeat the same process with getting the row-echelon form, now using $A^T$ and as a final step, subtract row 1 from row 2 once instead of $n$ times:
+
+\[
+\left[ {\begin{array}{ccccc}
+ 1 & n + 1 & 2n + 1  & \ldots & n^2 - n + 1 \\
+ 0 & -n & -2n & \ldots & n - n^2 \\
+ 0 & 0 & 0 &\ldots & 0 \\
+ \vdots & \vdots & \vdots &  & \vdots \\
+ 0 & 0 & 0 & \ldots & 0 \\
+\end{array} } \right]
+\]
+
+Divide row 2 by $-n$ and subtract it from row 1 $n+1$ times:
+
+\[
+\left[ {\begin{array}{ccccc}
+ 1 & 0 & -1  & \ldots & 2 - n \\
+ 0 & 1 & 2 & \ldots & n - 1 \\
+ 0 & 0 & 0 &\ldots & 0 \\
+ \vdots & \vdots & \vdots &  & \vdots \\
+ 0 & 0 & 0 & \ldots & 0 \\
+\end{array} } \right]
+\]
+
+Note that we end up with exactly the same reduced row-echelon form, hence we can conclude that the basis of kernel of $A$ defined above is also a basis of cokernel of $A$.
+
+\section{Problem 5}
+
+See attached Matlab script.
+
+\end{document}
