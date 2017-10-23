@@ -8,6 +8,7 @@
 \newcommand{\R}{\mathbb{R}}	
 \newcommand{\inner}{\langle\cdot,\cdot\rangle}
 \newcommand{\inr}[2]{\langle #1, #2\rangle}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
 
@@ -22,9 +23,19 @@
 
 \section*{Problem 1}
 
-\paragraph{a)} WIP
+\paragraph{a)} It is possible to express the inner product using the norm:
 
-\paragraph{b)} There is only one inner product that can generate any norm. We can prove this by contradiction. Assume there are two distinct inner products $\inner_1$, $\inner_2$ that generate the same norm but are not identical. Then, pick two vectors $u$ and $v$ such that $\inr{u}{v}_1 \neq \inr{u}{v}_2$. By definition of $\inner_1$, $\inner_2$ and norm we have:
+\begin{align*}
+\norm{u+v}^2 = \inr{u+v}{u+v} &= \inr{u}{u+v} + \inr{v}{u+v}
+\\ & = \inr{u}{u} + \inr{u}{v} + \inr{v}{u} + \inr{v}{v}
+\\ & = \inr{u}{u} + 2\cdot\inr{u}{v} + \inr{v}{v}
+\\ & = \inr{u}{u} + 2\cdot\inr{u}{v} + \inr{v}{v}
+\\ & = \norm{u}^2 + 2\cdot\inr{u}{v} + \norm{v}^2
+\\ &\Downarrow
+\\ \inr{u}{v} & = \frac{\norm{u+v}^2 - \norm{u}^2 - \norm{v}^2}{2}
+\end{align*}
+
+\paragraph{b)} There is only one inner product that can generate a norm. We can prove this by contradiction. Assume there are two distinct inner products $\inner_1$, $\inner_2$ that generate the same norm but are not identical. Then, pick two vectors $u$ and $v$ such that $\inr{u}{v}_1 \neq \inr{u}{v}_2$. By definition of $\inner_1$, $\inner_2$ and norm we have:
 \begin{gather*}
 \sqrt{\inr{v}{v}_1} = \sqrt{\inr{v}{v}_2} \qquad \textrm{for any } \; v \in V
 \\
@@ -61,6 +72,8 @@ Hence $\inr{u}{v}_2 = \inr{u}{v}_1$, what contradicts our assumption and implies
 \section*{Problem 2}
 
 \paragraph{a)} $\inr{f}{g}_1$ is not an inner product because it is not positive definite. Consider function $f(x) = 1$. Clearly, $f'(x) = 0$, which means $\inr{f}{f}_1 = \int^{1}_{0} f'(x)f'(x)\ dx = \int^{1}_{0} 0\ dx = 0$, but $f$ is not the zero vector.
+
+$\inr{f}{g}_2$, on the other hand, is an inner product since it satisfies the properties of an inner product: it is bilinear, symmetric and positive-definite.
 
 \paragraph{b)} The inner product is:
 
@@ -123,13 +136,34 @@ G &=
 \end{array} } \right]
 \end{align*}
 
-\paragraph{b)} Note that $1$, $e^x$ and $e^{2x}$ are linearly independent since you cannot generate any one function by combining the others using only scalar coefficients. This implies that Gram matrix G must be positive-definite.
+\paragraph{b)} Note that $1$, $e^x$ and $e^{2x}$ are linearly independent since you cannot generate any one function by combining the others using only scalar coefficients. This implies that Gram matrix $G$ must be positive-definite.
 
-\paragraph{c)} Using the inner product from Problem 2 results in the exact same matrix G computed in part (a). Note that this fact doesn't matter when it comes to positive-definiteness of G: since we're using the same vectors and these vectors are independent, the resultant Gram matrix would always be positive-definite.
+\paragraph{c)} Using the inner product from Problem 2 results in the matrix $G_2$ seen below. Note that the matrix itself doesn't matter when it comes to positive-definiteness of $G_2$: since we're using the same vectors and these vectors are independent, the resultant Gram matrix would always be positive-definite.
+
+\begin{align*}
+G_2 &=
+\left[ {\begin{array}{ccccc}
+ \inr{1}{1}_2 & \inr{1}{e^x}_2 & \inr{1}{e^{2x}}_2  \\
+ \inr{e^x}{1}_2 & \inr{e^x}{e^x}_2 & \inr{e^x}{e^{2x}}_2  \\
+ \inr{e^{2x}}{1}_2 & \inr{e^{2x}}{e^x}_2 & \inr{e^{2x}}{e^{2x}}_2  \\
+\end{array} } \right]
+\\ &=
+\left[ {\begin{array}{ccccc}
+ \int^1_0 1\; dx             & \int^1_0 2\cdot e^x\; dx    & \int^1_0 3\cdot e^{2x}\; dx  \\
+ \int^1_0 2\cdot e^x\; dx    & \int^1_0 2\cdot e^{2x}\; dx & \int^1_0 3\cdot e^{3x}\; dx  \\
+ \int^1_0 3\cdot e^{2x}\; dx & \int^1_0 3\cdot e^{3x}\; dx & \int^1_0 5\cdot e^{4x}\; dx  \\
+\end{array} } \right]
+\\ &=
+\left[ {\begin{array}{ccccc}
+ 1     &  2\,e - 2 & \frac{3}{2}(e^2 - 1) \\
+ 2\,e - 2 & e^2 - 1 & e^3 - 1  \\
+ \frac{3}{2}(e^2 - 1) & e^3 - 1 & \frac{5}{4}(e^4 - 1)  \\
+\end{array} } \right]
+\end{align*}
 
 \paragraph{d)} Repeating the point above: Since $1$, $e^x$ and $e^{2x}$ are linearly independent, the Gram matrix generated using any inner product for that vector space would be positive-definite. Therefore it's impossible to find $\inner_1$ and $\inner_2$ such that one generates a positive-definite Gram matrix and the other doesn't.
 
-\section{Problem 5}
+\section*{Problem 5}
 
 See attached Matlab script. My calculation revealed that Ted Cruz's Wikipedia page is the most similar to US Constitution.
 
