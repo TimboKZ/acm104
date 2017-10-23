@@ -57,7 +57,7 @@ while 1
     objective_per_iteration = [objective_per_iteration; p_row];
     
     % Plot data on relevant iterations
-    if iteration == 1 || iteration == 3 || iteration == 5 || change_occured == 0
+    if iteration == 1 || iteration == 5 || iteration == 10 || change_occured == 0
         sp = subplot(2, 2, subplot_id);
         subplot_id = subplot_id + 1;
         plot(sp, clust1(:, 1), clust1(:, 2), '.r', clust2(:, 1), clust2(:, 2), '.g', clust3(:, 1), clust3(:, 2), '.b', rs(:, 1), rs(:, 2), 'or', rs(:, 1), rs(:, 2), '*k');
@@ -93,7 +93,6 @@ legend('Data', 'Cluster 1 representative', 'Cluster 2 representative', 'Cluster 
 title('Problem 3b, trajectories of representatives')
 
 % Problem 4c
-objective_per_iteration
 figure
 plot(objective_per_iteration(:, 1), objective_per_iteration(:, 2))
 title('Problem 3c, objective function p versus iteration number')
