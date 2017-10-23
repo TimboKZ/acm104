@@ -1,0 +1,136 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newcommand{\R}{\mathbb{R}}	
+\newcommand{\inner}{\langle\cdot,\cdot\rangle}
+\newcommand{\inr}[2]{\langle #1, #2\rangle}
+
+\begin{document}
+
+
+\title{ACM104 Problem Set \#3 Solutions}
+
+\author{Timur Kuzhagaliyev}
+
+%\date{22nd October, 2017}
+ 
+\maketitle 
+
+\section*{Problem 1}
+
+\paragraph{a)} WIP
+
+\paragraph{b)} There is only one inner product that can generate any norm. We can prove this by contradiction. Assume there are two distinct inner products $\inner_1$, $\inner_2$ that generate the same norm but are not identical. Then, pick two vectors $u$ and $v$ such that $\inr{u}{v}_1 \neq \inr{u}{v}_2$. By definition of $\inner_1$, $\inner_2$ and norm we have:
+\begin{gather*}
+\sqrt{\inr{v}{v}_1} = \sqrt{\inr{v}{v}_2} \qquad \textrm{for any } \; v \in V
+\\
+\Downarrow
+\\
+\inr{u+v}{u+v}_1 = \inr{u+v}{u+v}_2 \qquad \textrm{for any } \; u,v \in V
+\end{gather*}
+Note that, for any norm $\inner$, we have:
+\begin{align*}
+\inr{u+v}{u+v} &= \inr{u}{u+v} + \inr{v}{u+v}
+\\ & = \inr{u}{u} + \inr{u}{v} + \inr{v}{u} + \inr{v}{v}
+\\ & = \inr{u}{u} + 2\cdot\inr{u}{v} + \inr{v}{v}
+\end{align*}
+Apply this to $\inner_1$ and $\inner_2$:
+\begin{align}
+\inr{u+v}{u+v}_1 &= \inr{u}{u}_1 + 2\cdot\inr{u}{v}_1 + \inr{v}{v}_1
+\\
+\inr{u+v}{u+v}_2 &= \inr{u}{u}_2 + 2\cdot\inr{u}{v}_2 + \inr{v}{v}_2
+\end{align}
+Now subtract (2) from (1) and apply definition of $\inner_1$, $\inner_2$ and norm:
+\begin{align*}
+\inr{u+v}{u+v}_1 - \inr{u+v}{u+v}_2 &= \inr{u}{u}_1 - \inr{u}{u}_2 + 2\cdot\inr{u}{v}_1 - 2\cdot\inr{u}{v}_2 + \inr{v}{v}_1 - \inr{v}{v}_2
+\\
+0 &= 0 + 2\cdot\inr{u}{v}_1 - 2\cdot\inr{u}{v}_2 + 0
+\\
+2\cdot\inr{u}{v}_2 &= 2\cdot\inr{u}{v}_1
+\\
+\inr{u}{v}_2 &= \inr{u}{v}_1
+\end{align*}
+Hence $\inr{u}{v}_2 = \inr{u}{v}_1$, what contradicts our assumption and implies that both are the same inner product. Therefore, the inner product generating some norm must be unique.
+
+\pagebreak
+
+\section*{Problem 2}
+
+\paragraph{a)} $\inr{f}{g}_1$ is not an inner product because it is not positive definite. Consider function $f(x) = 1$. Clearly, $f'(x) = 0$, which means $\inr{f}{f}_1 = \int^{1}_{0} f'(x)f'(x)\ dx = \int^{1}_{0} 0\ dx = 0$, but $f$ is not the zero vector.
+
+\paragraph{b)} The inner product is:
+
+\begin{gather*}
+\inr{f}{g} = \int^{1}_{0} (f(x)g(x) + f'(x)g'(x))\ dx
+\end{gather*}
+
+Cauchy-Schwarz inequality:
+
+\begin{gather*}
+\sqrt{\int^{1}_{0} (f(x)g(x) + f'(x)g'(x))\ dx} \leq \sqrt{\int^{1}_{0} (f(x)^2 + f'(x)^2)\ dx} \cdot \sqrt{\int^{1}_{0} (g(x)^2 + g'(x)^2)\ dx} 
+\end{gather*}
+
+Triangle inequality:
+
+\begin{gather*}
+\sqrt{\int^{1}_{0} ((f(x)+g(x))^2 + (f'(x)+g'(x))^2)\ dx} \leq \sqrt{\int^{1}_{0} (f(x)^2 + f'(x)^2)\ dx} + \sqrt{\int^{1}_{0} (g(x)^2 + g'(x)^2)\ dx} 
+\end{gather*}
+
+\paragraph{c)} Starting from $\textrm{cos}\,\theta$:
+
+\begin{align*}
+\textrm{cos}\,\theta &= \frac{\int^{1}_{0} (f(x)g(x) + f'(x)g'(x))\ dx}{\sqrt{\int^{1}_{0} (f(x)^2 + f'(x)^2)\ dx} \cdot \sqrt{\int^{1}_{0} (g(x)^2 + g'(x)^2)\ dx} }
+\\ &= \frac{\int^{1}_{0} (e^x + 0)\ dx}{\sqrt{\int^{1}_{0} (1^2 + 0^2)\ dx} \cdot \sqrt{\int^{1}_{0} (e^{2x} + e^{2x})\ dx} }
+\\ &= \frac{[e^x]^{1}_{0}}{\sqrt{[x]^{1}_{0}} \cdot \sqrt{[e^{2x}]^{1}_{0}} }
+\\ &= \frac{e - 1}{\sqrt{1} \cdot \sqrt{e^{2} - 1} }
+\\ &= \frac{e - 1}{\sqrt{(e - 1)(e + 1)}}
+\\ &= \frac{\sqrt{(e - 1)}}{\sqrt{(e + 1)}}
+\\ \theta &\approx 0.8233 \ \textrm{rad} \; \textrm{(4 d.p.)}
+\end{align*}
+
+\pagebreak
+
+\section*{Problem 3}
+
+See attached \texttt{.png} plots and Matlab files. For part (d), the minimum $p$ value achieved on the last iteration is $1014.6506$.
+
+\section*{Problem 4}
+
+\paragraph{a)} Finding the Gram matrix G using $L^2 = \int^1_0 f(x)g(x)\; dx$ inner product:
+
+\begin{align*}
+G &=
+\left[ {\begin{array}{ccccc}
+ \inr{1}{1} & \inr{1}{e^x} & \inr{1}{e^{2x}}  \\
+ \inr{e^x}{1} & \inr{e^x}{e^x} & \inr{e^x}{e^{2x}}  \\
+ \inr{e^{2x}}{1} & \inr{e^{2x}}{e^x} & \inr{e^{2x}}{e^{2x}}  \\
+\end{array} } \right]
+\\ &=
+\left[ {\begin{array}{ccccc}
+ \int^1_0 1\; dx & \int^1_0 e^x\; dx & \int^1_0 e^{2x}\; dx  \\
+ \int^1_0 e^x\; dx & \int^1_0 e^{2x}\; dx & \int^1_0 e^{3x}\; dx  \\
+ \int^1_0 e^{2x}\; dx & \int^1_0 e^{3x}\; dx & \int^1_0 e^{4x}\; dx  \\
+\end{array} } \right]
+\\ &=
+\left[ {\begin{array}{ccccc}
+ 1 & e - 1 & \frac{1}{2}(e^2 - 1)  \\
+ e - 1 & \frac{1}{2}(e^2 - 1) & \frac{1}{3}(e^3 - 1)  \\
+ \frac{1}{2}(e^2 - 1) & \frac{1}{3}(e^3 - 1) & \frac{1}{4}(e^4 - 1)  \\
+\end{array} } \right]
+\end{align*}
+
+\paragraph{b)} Note that $1$, $e^x$ and $e^{2x}$ are linearly independent since you cannot generate any one function by combining the others using only scalar coefficients. This implies that Gram matrix G must be positive-definite.
+
+\paragraph{c)} Using the inner product from Problem 2 results in the exact same matrix G computed in part (a). Note that this fact doesn't matter when it comes to positive-definiteness of G: since we're using the same vectors and these vectors are independent, the resultant Gram matrix would always be positive-definite.
+
+\paragraph{d)} Repeating the point above: Since $1$, $e^x$ and $e^{2x}$ are linearly independent, the Gram matrix generated using any inner product for that vector space would be positive-definite. Therefore it's impossible to find $\inner_1$ and $\inner_2$ such that one generates a positive-definite Gram matrix and the other doesn't.
+
+\section{Problem 5}
+
+See attached Matlab script. My calculation revealed that Ted Cruz's Wikipedia page is the most similar to US Constitution.
+
+\end{document}
