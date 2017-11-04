@@ -83,7 +83,7 @@ K = A^T \cdot A &=
  17 \\
 \end{array} } \right]
 \end{align*}
-First we need, to check if the matrix $K$ is positive definite. We know that matrix is positive definite if all of its principal minors are positive. Indeed, $\textrm{det}\,A_1 = 11 > 0$; $\textrm{det}\,A_2 = 11 \cdot 34 - 4^2 = 18 > 0$; $\textrm{det}\,A_3 = 11 \cdot 264 - 4 \cdot (-12) - 5 \cdot 122 = 2904 + 48 - 610 = 2342 > 0$; Therefore $K$ is positive definite and there exists a global minimizer $x^* = K^{-1}f$.
+First we need to check if the matrix $K$ is positive definite. We know that matrix is positive definite if all of its principal minors are positive. Indeed, $\textrm{det}\,A_1 = 11 > 0$; $\textrm{det}\,A_2 = 11 \cdot 34 - 4^2 = 18 > 0$; $\textrm{det}\,A_3 = 11 \cdot 264 - 4 \cdot (-12) - 5 \cdot 122 = 2904 + 48 - 610 = 2342 > 0$; Therefore $K$ is positive definite and there exists a global minimizer $x^* = K^{-1}f$.
 
 \pagebreak
 
@@ -124,5 +124,61 @@ x^* = K^{-1} f = K f &=
 The least squares error is $0$, so in this case $x^*$ is the exact solution.
 
 \section*{Problem 2}
+
+\textit{WIP}
+
+\section*{Problem 3}
+\begin{gather*}
+y = f(x_1, x_2) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2
+\quad \textrm{and} \quad
+\beta^* = (\beta^*_0, \beta^*_1, \beta^*_2, \beta^*_3)^T
+\end{gather*}
+
+\paragraph{a)} Deriving a system of normal equations on $\beta^*$:
+
+\begin{equation*}
+\begin{aligned}[c]
+r_i &= y^{(i)} - f(x_1^{(i)}, x_2^{(i)})
+\\ &= y^{(i)} - 
+\left[ {\begin{array}{cccc}
+ 1 & x_1^{(i)} & x_2^{(i)} & x_1^{(i)} x_2^{(i)} \\
+\end{array} } \right]
+\left[ {\begin{array}{c}
+\beta^*_0 \\
+\beta^*_1 \\
+\beta^*_2 \\
+\beta^*_3 \\
+\end{array} } \right]
+\end{aligned}
+\qquad\Rightarrow\qquad
+\begin{aligned}[c]
+r &=  
+\left[ {\begin{array}{c}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+\vdots \\
+y^{(m)} \\
+\end{array} } \right]
+-
+\left[ {\begin{array}{cccc}
+ 1 & x_1^{(1)} & x_2^{(1)} & x_1^{(1)} x_2^{(1)} \\
+ 1 & x_1^{(2)} & x_2^{(2)} & x_1^{(2)} x_2^{(2)} \\
+ \vdots & \vdots & \vdots & \vdots \\
+ \vdots & \vdots & \vdots & \vdots \\
+ 1 & x_1^{(m)} & x_2^{(m)} & x_1^{(m)} x_2^{(m)} \\
+\end{array} } \right]
+\left[ {\begin{array}{c}
+\beta^*_0 \\
+\beta^*_1 \\
+\beta^*_2 \\
+\beta^*_3 \\
+\end{array} } \right]
+\end{aligned}
+\end{equation*}
+
+\section*{Problem 4}
+
+\section*{Problem 5}
 
 \end{document}
