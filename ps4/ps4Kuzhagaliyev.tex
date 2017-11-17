@@ -229,7 +229,33 @@ r_i &= y^{(i)} - f(x_1^{(i)}, x_2^{(i)})
 \end{aligned}
 \qquad\Rightarrow\qquad
 \begin{aligned}[c]
-r &=  
+\left[ {\begin{array}{c}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+\vdots \\
+y^{(m)} \\
+\end{array} } \right]
+&=
+\left[ {\begin{array}{cccc}
+ 1 & x_1^{(1)} & x_2^{(1)} & x_1^{(1)} x_2^{(1)} \\
+ 1 & x_1^{(2)} & x_2^{(2)} & x_1^{(2)} x_2^{(2)} \\
+ \vdots & \vdots & \vdots & \vdots \\
+ \vdots & \vdots & \vdots & \vdots \\
+ 1 & x_1^{(m)} & x_2^{(m)} & x_1^{(m)} x_2^{(m)} \\
+\end{array} } \right]
+\left[ {\begin{array}{c}
+\beta^*_0 \\
+\beta^*_1 \\
+\beta^*_2 \\
+\beta^*_3 \\
+\end{array} } \right]
+\end{aligned}
+\end{equation*}
+\begin{gather*}
+\Downarrow
+\\\\
+r =  
 \left[ {\begin{array}{c}
 y^{(1)} \\
 y^{(2)} \\
@@ -251,8 +277,7 @@ y^{(m)} \\
 \beta^*_2 \\
 \beta^*_3 \\
 \end{array} } \right]
-\end{aligned}
-\end{equation*}
+\end{gather*}
 
 See attached \texttt{ps4problem3Kuzhagaliyev.m} file and plots for other solutions.
 

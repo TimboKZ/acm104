@@ -7,7 +7,7 @@ function V = gram_schmidt(H)
         v = H(:, i);
         for j = 1:i-1
             vj = V(:, j);
-            v = v - (dot(v, vj)/norm(vj)) * vj;
+            v = v - (dot(v, vj)/power(norm(vj), 2)) * vj;
         end
         V(:, i) = v;
     end

@@ -1,8 +1,9 @@
 clear deltav;
 clear deltau;
+ns = 10:10:100;
 deltav = zeros(10, 1);
 deltau = zeros(10, 1);
-for n = 10:10:100
+for n = ns
     V = gram_schmidt(hilb(n));
     A1 = eye(n) - V' * V;
     deltav(n/10) = norm(A1, Inf);
@@ -11,7 +12,6 @@ for n = 10:10:100
     A2 = eye(n) - U' * U;
     deltau(n/10) = norm(A2, Inf);
 end
-ns = 10:10:100;
 plot(ns, deltav, '-+r');
 title('Problem 5 (e), stability of Gram-Schmidt process');
 grid on;

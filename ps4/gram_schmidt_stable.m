@@ -10,10 +10,4 @@ function U = gram_schmidt_stable(H)
             H(:, j) = H(:, j) - dot(H(:, j), u) * u;
         end
     end
-    
-    % Normalise each vector
-    for i = 1:n
-        u = U(:, i);
-        U(:, i) = u/norm(u);
-    end
 end
