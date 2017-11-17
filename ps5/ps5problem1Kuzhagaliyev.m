@@ -8,14 +8,6 @@ a = 5;        % interpolation interval [-a,a]
 n = [3, 5, 10, 15];  % number of sampling points
 
 for j=1:length(n)
-    lpCoeff = zeros(n(j), 1);
-    for i=1:n(j)
-        ip = @(z) f(z) .* legendreP(i - 1, z);
-        lpCoeff(i) = (2 * i + 1) / 2 * integral(ip, -1, 1);
-    end
-end
-
-for j=1:length(n)
     
     % Calculate coordinates of the function in basis admitted by 
     % transformed Legendre polynomials
