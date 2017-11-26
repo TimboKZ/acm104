@@ -1,0 +1,142 @@
+\documentclass[10pt,letter]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{fullpage}
+\newcommand{\R}{\mathbb{R}}	
+\newcommand{\inner}{\langle\cdot,\cdot\rangle}
+\newcommand{\inr}[2]{\langle #1, #2\rangle}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\begin{document}
+
+
+\title{ACM104 Problem Set \#6 Solutions}
+
+\author{Timur Kuzhagaliyev}
+
+%\date{24th November, 2017}
+ 
+\maketitle 
+
+\section*{Problem 1}
+See attached \texttt{ps6problem1Kuzhagaliyev.m} for the solution.
+
+\section*{Problem 2}
+See attached \texttt{ps6problem2Kuzhagaliyev.m} for the solution. The ID numbers of the top 10 airports for different $\alpha$ values can be seen below, in the order of descending importance.
+
+\begin{itemize}
+\item{$\alpha = 0.10$}: \quad 6  1  7  3  2  21  11  8  18  10  
+\item{$\alpha = 0.15$}: \quad 6  7  3  1  2  21  11  8  10  18
+\item{$\alpha = 0.20$}: \quad 6  7  3  1  2  21  11  10  8  18
+\end{itemize}
+
+\section*{Problem 3}
+\begin{align*}
+F &=
+\left[ {\begin{array}{cc}
+ 1 & 1 \\
+ 1 & 0 \\
+\end{array} } \right]
+\end{align*}
+
+The eigenvalues of $F$ are the solutions of the following equation:
+
+\begin{gather*}
+\textrm{det}
+\left[ {\begin{array}{cc}
+ 1-\lambda & 1 \\
+ 1 &  -\lambda \\
+\end{array} } \right]
+= 0
+\\ \Downarrow
+\end{gather*}
+\begin{align*}
+-\lambda(1-\lambda) - 1\quad  &= \quad 0
+\\
+\lambda^2 - \lambda - 1 \quad &= \quad 0
+\end{align*}
+Using the quadratic formula we can find two solutions, which are the eigenvalues of $F$:
+\begin{align*}
+\lambda = \frac{1 \pm \sqrt{5}}{2}
+\end{align*}
+To find the corresponding eigenvectors we need to solve the equation
+\begin{gather*}
+\left[ {\begin{array}{cc}
+ 1 & 1 \\
+ 1 &  0 \\
+\end{array} } \right]
+\left[ {\begin{array}{c}
+ x \\
+ y \\
+\end{array} } \right]
+= \lambda
+\left[ {\begin{array}{c}
+ x \\
+ y \\
+\end{array} } \right]
+\\ \Downarrow \\
+\begin{aligned}
+x + y = \lambda x \\
+x = \lambda y
+\end{aligned}
+\quad \Rightarrow \quad
+x = \frac{1 \pm \sqrt{5}}{2}y
+\end{gather*}
+Therefore we can pick eigenvectors $v_1$ and $v_2$ (corresponding to eigenvalues $\lambda_1$ and $\lambda_2$) to be:
+\begin{gather*}
+v_1 = 
+\left[ {\begin{array}{c}
+ \frac{1 + \sqrt{5}}{2} \\
+ 1 \\
+\end{array} } \right]
+\quad \textrm{and} \quad
+v_2 = 
+\left[ {\begin{array}{c}
+ \frac{1 - \sqrt{5}}{2} \\
+ 1 \\
+\end{array} } \right]
+\end{gather*}
+Finally, we can diagonalise $F$ as follows:
+\begin{align*}
+F &=
+\left[ {\begin{array}{cc}
+ \frac{1 + \sqrt{5}}{2} &  \frac{1 - \sqrt{5}}{2} \\
+ 1 & 1 \\
+\end{array} } \right]
+\left[ {\begin{array}{cc}
+ \frac{1 + \sqrt{5}}{2} &  0 \\
+ 0 & \frac{1 - \sqrt{5}}{2} \\
+\end{array} } \right]
+\left[ {\begin{array}{cc}
+ \frac{1 + \sqrt{5}}{2} &  \frac{1 - \sqrt{5}}{2} \\
+ 1 & 1 \\
+\end{array} } \right]^{-1}
+\end{align*}
+Or equivalently:
+\begin{align*}
+F &=
+\left[ {\begin{array}{cc}
+ \frac{1 + \sqrt{5}}{2} &  \frac{1 - \sqrt{5}}{2} \\
+ 1 & 1 \\
+\end{array} } \right]
+\left[ {\begin{array}{cc}
+ \frac{1 + \sqrt{5}}{2} &  0 \\
+ 0 & \frac{1 - \sqrt{5}}{2} \\
+\end{array} } \right]
+\left[ {\begin{array}{cc}
+ \frac{1}{\sqrt{5}} &  -\frac{1 - \sqrt{5}}{2\sqrt{5}} \\
+ -\frac{1}{\sqrt{5}} & \frac{1 + \sqrt{5}}{2\sqrt{5}} \\
+\end{array} } \right]
+\end{align*}
+Indeed, when we evaluate this expression we receive the original matrix $F$.
+
+\section*{Problem 4}
+See attached \texttt{ps6problem4Kuzhagaliyev.m} and the relevant plot for the solution.
+
+\section*{Problem 5}
+See attached \texttt{ps6problem5Kuzhagaliyev.m} and the relevant plot for the solution.
+
+\end{document}
